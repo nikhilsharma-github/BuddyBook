@@ -1,0 +1,10 @@
+# We are using a venv here for managing all our packages here.
+# we also set up our venv like
+set FLASK_APP=app.py
+set FLASK_ENV=development
+
+and using flask run --reload.
+the reload will automatically rerun when any changes will be made in the code.
+
+
+# Deactivate the python environment before making any commit
