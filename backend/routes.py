@@ -17,8 +17,8 @@ def create_friend():
         data = request.json
         required_fields = ["name","role","description","gender"]
         for field in required_fields:
-            if field not in data:
-                return ({"msg":f"Missing Required fields {field}"}),400
+            if field not in data or not data.get(field):
+                return jsonify({"msg":f"Missing Required fields {field}"}),400
 
         name = data.get("name")
         role = data.get("role")
@@ -36,7 +36,7 @@ def create_friend():
         db.session.add(new_friend)
         db.session.commit()
 
-        return jsonify({"msg":"user created successfully"}),200
+        return jsonify(new_friend.to_json()),201
 
     except Exception as e:
         db.session.rollback()
@@ -60,7 +60,7 @@ def delete_friend(id):
     
 
 # Update a friend profile
-@app.route('/api/friends/<int:id>', methods=['PATCH'])
+@app.route('/api/friends/<int:id>', methods=['PUT'])
 def update_friend(id):
     try:
         friend = Friend.query.get(id)

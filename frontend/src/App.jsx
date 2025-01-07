@@ -1,11 +1,13 @@
 import { Container, Stack, Text } from "@chakra-ui/react";
 import Navbar from "./components/Navbar";
 import UserGrid from "./components/UserGrid";
+import { useState } from "react";
 function App() {
+    const [users,setUsers]=useState([]);
     return (
         <>
             <Stack minH={"100vh"}>
-                <Navbar></Navbar>
+                <Navbar setUsers={setUsers}></Navbar>
                 <Container maxW={"1200px"} my={4}>
                     <Text
                         fontSize={{ base: "3xl", md: "50" }}
@@ -24,7 +26,7 @@ function App() {
                         </Text>
                         🚀
                     </Text>
-                    <UserGrid></UserGrid>
+                    <UserGrid users={users} setUsers={setUsers}></UserGrid>
                 </Container>
             </Stack>
         </>
