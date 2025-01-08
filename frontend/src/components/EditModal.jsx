@@ -30,7 +30,7 @@ function EditModal({ setUsers, user }) {
     });
     const toast = useToast();
 
-    const handleEditUser = async (e) => {
+    const handleEditUser  = async (e) => {
         e.preventDefault();
         setIsLoading(true);
         try {
@@ -45,11 +45,7 @@ function EditModal({ setUsers, user }) {
             if (!res.ok) {
                 throw new Error(data.error);
             }
-            console.log("State User : ", user);
-            console.log("Data User : ", data[0]);
-            console.log("Printing all users via map : ", (prevUsers) =>
-                prevUsers.map((u) => (u.id === user.id ? data[0] : u))
-            );
+
             setUsers((prevUsers) =>
                 prevUsers.map((u) => (u.id === user.id ? data[0] : u))
             );
@@ -79,21 +75,21 @@ function EditModal({ setUsers, user }) {
             <IconButton
                 onClick={onOpen}
                 variant="ghost"
-                colorScheme="blue"
-                aria-label="See menu"
+                colorScheme="green"
+                aria-label="Edit user"
                 size={"sm"}
                 icon={<BiEditAlt size={20} />}
             />
 
-            <Modal isOpen={isOpen} onClose={onClose}>
+            <Modal isOpen={isOpen} onClose={onClose} size="lg">
                 <ModalOverlay />
-                <form onSubmit={handleEditUser}>
-                    <ModalContent>
-                        <ModalHeader>My new BFF 😍</ModalHeader>
+                <form onSubmit={handleEditUser }>
+                    <ModalContent bg="#19202D" color="white">
+                        <ModalHeader color="green.400">Edit Buddy Information</ModalHeader>
                         <ModalCloseButton />
                         <ModalBody pb={6}>
-                            <Flex alignItems={"center"} gap={4}>
-                                <FormControl>
+                            <Flex direction="column" gap={4}>
+                                <FormControl isRequired>
                                     <FormLabel>Full Name</FormLabel>
                                     <Input
                                         placeholder="John Doe"
@@ -104,10 +100,12 @@ function EditModal({ setUsers, user }) {
                                                 name: e.target.value,
                                             }))
                                         }
+                                        variant="flushed"
+                                        color="white"
                                     />
                                 </FormControl>
 
-                                <FormControl>
+                                <FormControl isRequired>
                                     <FormLabel>Role</FormLabel>
                                     <Input
                                         placeholder="Software Engineer"
@@ -118,36 +116,40 @@ function EditModal({ setUsers, user }) {
                                                 role: e.target.value,
                                             }))
                                         }
+                                        variant="flushed"
+                                        color="white"
+                                    />
+                                </FormControl>
+                            <FormControl isRequired>
+                                    <FormLabel>Description</FormLabel>
+                                    <Textarea
+                                        resize={"none"}
+                                        overflowY={"hidden"}
+                                        placeholder="He's a software engineer who loves to code and build things."
+                                        value={inputs.description}
+                                        onChange={(e) =>
+                                            setInputs((prev) => ({
+                                                ...prev,
+                                                description: e.target.value,
+                                            }))
+                                        }
+                                        variant="flushed"
+                                        color="white"
                                     />
                                 </FormControl>
                             </Flex>
-                            <FormControl mt={4}>
-                                <FormLabel>Description</FormLabel>
-                                <Textarea
-                                    resize={"none"}
-                                    overflowY={"hidden"}
-                                    placeholder="He's a software engineer who loves to code and build things."
-                                    value={inputs.description}
-                                    onChange={(e) =>
-                                        setInputs((prev) => ({
-                                            ...prev,
-                                            description: e.target.value,
-                                        }))
-                                    }
-                                />
-                            </FormControl>
                         </ModalBody>
 
                         <ModalFooter>
                             <Button
-                                colorScheme="blue"
+                                colorScheme="green"
                                 mr={3}
                                 type="submit"
                                 isLoading={isLoading}
                             >
                                 Update
                             </Button>
-                            <Button onClick={onClose}>Cancel</Button>
+                            <Button onClick={onClose} colorScheme="red">Cancel</Button>
                         </ModalFooter>
                     </ModalContent>
                 </form>
@@ -157,87 +159,3 @@ function EditModal({ setUsers, user }) {
 }
 
 export default EditModal;
-
-// STARTER CODE
-// import {
-// 	Button,
-// 	Flex,
-// 	FormControl,
-// 	FormLabel,
-// 	IconButton,
-// 	Input,
-// 	Modal,
-// 	ModalBody,
-// 	ModalCloseButton,
-// 	ModalContent,
-// 	ModalFooter,
-// 	ModalHeader,
-// 	ModalOverlay,
-// 	Radio,
-// 	RadioGroup,
-// 	Textarea,
-// 	useDisclosure,
-// } from "@chakra-ui/react";
-// import { BiEditAlt } from "react-icons/bi";
-
-// function EditModal({ user }) {
-// 	const { isOpen, onOpen, onClose } = useDisclosure();
-
-// 	return (
-// 		<>
-// 			<IconButton
-// 				onClick={onOpen}
-// 				variant='ghost'
-// 				colorScheme='blue'
-// 				aria-label='See menu'
-// 				size={"sm"}
-// 				icon={<BiEditAlt size={20} />}
-// 			/>
-
-// 			<Modal isOpen={isOpen} onClose={onClose}>
-// 				<ModalOverlay />
-// 				<ModalContent>
-// 					<ModalHeader>My new BFF 😍</ModalHeader>
-// 					<ModalCloseButton />
-// 					<ModalBody pb={6}>
-// 						<Flex alignItems={"center"} gap={4}>
-// 							<FormControl>
-// 								<FormLabel>Full Name</FormLabel>
-// 								<Input placeholder='John Doe' />
-// 							</FormControl>
-
-// 							<FormControl>
-// 								<FormLabel>Role</FormLabel>
-// 								<Input placeholder='Software Engineer' />
-// 							</FormControl>
-// 						</Flex>
-// 						<FormControl mt={4}>
-// 							<FormLabel>Description</FormLabel>
-// 							<Textarea
-// 								resize={"none"}
-// 								overflowY={"hidden"}
-// 								placeholder="He's a software engineer who loves to code and build things.
-//               "
-// 							/>
-// 						</FormControl>
-// 						<RadioGroup defaultValue='male' mt={4}>
-// 							<Flex gap={5}>
-// 								<Radio value='male'>Male</Radio>
-// 								<Radio value='female'>Female</Radio>
-// 							</Flex>
-// 						</RadioGroup>
-// 					</ModalBody>
-
-// 					<ModalFooter>
-// 						<Button colorScheme='blue' mr={3}>
-// 							Add
-// 						</Button>
-// 						<Button onClick={onClose}>Cancel</Button>
-// 					</ModalFooter>
-// 				</ModalContent>
-// 			</Modal>
-// 		</>
-// 	);
-// }
-
-// export default EditModal;

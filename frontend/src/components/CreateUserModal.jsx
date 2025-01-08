@@ -17,10 +17,10 @@ import {
     RadioGroup,
     useToast,
 } from "@chakra-ui/react";
-import React from "react";
+import React, { useState } from "react";
 import { BiAddToQueue } from "react-icons/bi";
-import { useState } from "react";
 import { BASE_URL } from "../constants/constants";
+
 const CreateUserModal = ({ setUsers }) => {
     const { isOpen, onOpen, onClose } = useDisclosure();
     const [isLoading, setIsLoading] = useState(false);
@@ -31,6 +31,7 @@ const CreateUserModal = ({ setUsers }) => {
         gender: "",
     });
     const toast = useToast();
+
     const handleCreateUser = async (e) => {
         e.preventDefault();
         setIsLoading(true);
@@ -50,7 +51,7 @@ const CreateUserModal = ({ setUsers }) => {
 
             toast({
                 status: "success",
-                title: "yay!",
+                title: "Yay!",
                 description: "Friend Created Successfully",
                 duration: 2000,
                 position: "top-center",
@@ -61,7 +62,7 @@ const CreateUserModal = ({ setUsers }) => {
         } catch (e) {
             toast({
                 status: "error",
-                title: "An Error Occured",
+                title: "An Error Occurred",
                 description: e.message,
                 duration: 4000,
                 position: "top-center",
@@ -70,20 +71,29 @@ const CreateUserModal = ({ setUsers }) => {
             setIsLoading(false);
         }
     };
+
     return (
         <>
-            <Button onClick={onOpen}>
-                <BiAddToQueue size={20} />
+            <Button
+                onClick={onOpen}
+                colorScheme="blue"
+                leftIcon={<BiAddToQueue size={20} />}
+            >
+                Add Buddy
             </Button>
-            <Modal isOpen={isOpen} onClose={onClose}>
+            <Modal isOpen={isOpen} onClose={onClose} size="lg">
                 <ModalOverlay />
                 <form action="" onSubmit={handleCreateUser}>
-                    <ModalContent>
-                        <ModalHeader>My new Buddy</ModalHeader>
+                <ModalContent 
+                bg="#19202D" 
+                color="white">
+                        <ModalHeader color="blue.500">
+                            My New Buddy
+                        </ModalHeader>
                         <ModalCloseButton />
                         <ModalBody pb={6}>
-                            <Flex alignItems={"center"} gap={4}>
-                                <FormControl>
+                            <Flex direction="column" gap={4}>
+                                <FormControl isRequired>
                                     <FormLabel>Full Name</FormLabel>
                                     <Input
                                         placeholder="John Doe"
@@ -94,9 +104,10 @@ const CreateUserModal = ({ setUsers }) => {
                                                 name: e.target.value,
                                             })
                                         }
+                                        variant="flushed"
                                     />
                                 </FormControl>
-                                <FormControl>
+                                <FormControl isRequired>
                                     <FormLabel>Role</FormLabel>
                                     <Input
                                         placeholder="Software Engineer"
@@ -107,13 +118,14 @@ const CreateUserModal = ({ setUsers }) => {
                                                 role: e.target.value,
                                             })
                                         }
+                                        variant="flushed"
                                     />
                                 </FormControl>
-                                <FormControl mt={4}>
+                                <FormControl isRequired>
                                     <FormLabel>Description</FormLabel>
                                     <Textarea
-                                        resize={"none"}
-                                        overflowY={"hidden"}
+                                        resize="none"
+                                        overflowY="hidden"
                                         placeholder="He's a software engineer who loves to code and build things."
                                         value={inputs.description}
                                         onChange={(e) =>
@@ -122,46 +134,50 @@ const CreateUserModal = ({ setUsers }) => {
                                                 description: e.target.value,
                                             })
                                         }
+                                        variant="flushed"
                                     />
                                 </FormControl>
-                                <RadioGroup mt={4}>
-                                    <Flex gap={5}>
-                                        <Radio
-                                            value="male"
-                                            onChange={(e) =>
-                                                setInputs({
-                                                    ...inputs,
-                                                    gender: e.target.value,
-                                                })
-                                            }
-                                        >
-                                            Male
-                                        </Radio>
-                                        <Radio
-                                            value="female"
-                                            onChange={(e) =>
-                                                setInputs({
-                                                    ...inputs,
-                                                    gender: e.target.value,
-                                                })
-                                            }
-                                        >
-                                            Female
-                                        </Radio>
-                                    </Flex>
-                                </RadioGroup>
+                                <FormControl>
+                                    <FormLabel>Gender</FormLabel>
+                                    <RadioGroup
+                                        onChange={(value) =>
+                                            setInputs({
+                                                ...inputs,
+                                                gender: value,
+                                            })
+                                        }
+                                        value={inputs.gender}
+                                    >
+                                        <Flex gap={5}>
+                                            <Radio
+                                                value="male"
+                                                colorScheme="blue"
+                                            >
+                                                Male
+                                            </Radio>
+                                            <Radio
+                                                value="female"
+                                                colorScheme="pink"
+                                            >
+                                                Female
+                                            </Radio>
+                                        </Flex>
+                                    </RadioGroup>
+                                </FormControl>
                             </Flex>
                         </ModalBody>
                         <ModalFooter>
                             <Button
-                                colorScheme="blue"
+                                colorScheme="green"
                                 mr={3}
                                 type="submit"
                                 isLoading={isLoading}
                             >
                                 Add
                             </Button>
-                            <Button onClick={onClose}>Cancel</Button>
+                            <Button onClick={onClose} colorScheme="red">
+                                Cancel
+                            </Button>
                         </ModalFooter>
                     </ModalContent>
                 </form>

@@ -8,23 +8,20 @@ function App() {
         <>
             <Stack minH={"100vh"}>
                 <Navbar setUsers={setUsers}></Navbar>
-                <Container maxW={"1200px"} my={4}>
+                <Container maxW={"1200px"} my={2}>
                     <Text
-                        fontSize={{ base: "3xl", md: "50" }}
-                        fontWeight={"bold"}
-                        letterSpacing={"2px"}
-                        textTransform={"uppercase"}
+                        fontSize={{ base: "3xl", md: "40" }}
+                        fontWeight={"light"}
                         textAlign={"center"}
-                        mb={8}
+                        mb={2}
                     >
                         <Text
                             as={"span"}
                             bgGradient={"linear(to-r, cyan.400, blue.500)"}
                             bgClip={"text"}
                         >
-                            NIKHIL TEXT
+                            Save your Favourite Contacts.
                         </Text>
-                        🚀
                     </Text>
                     <UserGrid users={users} setUsers={setUsers}></UserGrid>
                 </Container>

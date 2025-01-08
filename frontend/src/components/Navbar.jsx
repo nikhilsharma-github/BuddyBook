@@ -14,12 +14,12 @@ import CreateUserModal from "./CreateUserModal";
 const Navbar = ({ setUsers }) => {
     const { colorMode, toggleColorMode } = useColorMode();
     return (
-        <Container maxW={"900px"}>
+        <Container maxW={"1200px"}>
             <Box
                 px={4}
                 my={4}
-                borderRadius={5}
-                bg={useColorModeValue("gray.200", "gray.700")}
+                borderRadius={16}
+                bg={useColorModeValue("blue.200", "#0f192f")}
             >
                 <Flex
                     h="16"
@@ -33,8 +33,20 @@ const Navbar = ({ setUsers }) => {
                         gap={3}
                         display={{ base: "none", sm: "flex" }}
                     >
-                        {/* <img src='/python.png' alt='Python logo' width={50} height={40} /> */}
-                        <Text fontSize={"40px"}>BuddyBook</Text>
+                        <img
+                            src="/BuddyBook.png"
+                            alt="BuddyBook"
+                            width={50}
+                            height={40}
+                        />
+                        <Text
+                            fontSize={"40px"}
+                            fontFamily="'Delius Swash Caps'"
+                            bgGradient="linear(to-l, #ffe600, #ff1088)"
+                            bgClip="text"
+                        >
+                            BuddyBook
+                        </Text>
                     </Flex>
                     {/* Right side */}
                     <Flex gap={3} alignItems={"center"}>
@@ -42,9 +54,7 @@ const Navbar = ({ setUsers }) => {
                             fontSize={"lg"}
                             fontWeight={500}
                             display={{ base: "none", md: "block" }}
-                        >
-                            BuddyFFship 🔥
-                        </Text>
+                        ></Text>
 
                         <Button onClick={toggleColorMode}>
                             {colorMode === "light" ? (
