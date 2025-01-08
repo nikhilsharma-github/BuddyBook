@@ -85,7 +85,7 @@ const CreateUserModal = ({ setUsers }) => {
                 <ModalOverlay />
                 <form action="" onSubmit={handleCreateUser}>
                 <ModalContent 
-                bg="#19202D" 
+                bg="#000918" 
                 color="white">
                         <ModalHeader color="blue.500">
                             My New Buddy

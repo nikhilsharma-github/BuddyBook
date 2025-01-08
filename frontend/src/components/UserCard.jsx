@@ -18,7 +18,7 @@ import { BASE_URL } from "../constants/constants";
 const UserCard = ({ user, setUsers }) => {
     const toast = useToast();
 
-    const handleDeleteUser  = async () => {
+    const handleDeleteUser = async () => {
         try {
             const res = await fetch(BASE_URL + "/friends/" + user.id, {
                 method: "DELETE",
@@ -51,11 +51,15 @@ const UserCard = ({ user, setUsers }) => {
 
     return (
         <Card
-            bg="gray.800" // Dark background for the card
+            bgGradient="linear(to-l, #041637, #002e27)" // Dark background for the card
             color="white" // White text color
             borderRadius="md" // Rounded corners
             boxShadow="md" // Shadow for depth
-            _hover={{ boxShadow: "lg", transform: "scale(1.02)", transition: "0.2s" }} // Hover effect
+            _hover={{
+                boxShadow: "lg",
+                transform: "scale(1.02)",
+                transition: "0.2s",
+            }} // Hover effect
         >
             <CardHeader>
                 <Flex gap={4}>
@@ -63,7 +67,9 @@ const UserCard = ({ user, setUsers }) => {
                         <Avatar src={user.imgUrl} />
                         <Box>
                             <Heading size="sm">{user.name}</Heading>
-                            <Text fontSize="sm" color="gray.400">{user.role}</Text>
+                            <Text fontSize="sm" color="gray.400">
+                                {user.role}
+                            </Text>
                         </Box>
                     </Flex>
                     <Flex>
@@ -74,7 +80,7 @@ const UserCard = ({ user, setUsers }) => {
                             size={"sm"}
                             aria-label="Delete user"
                             icon={<BiTrash size={20} />}
-                            onClick={handleDeleteUser }
+                            onClick={handleDeleteUser}
                         />
                     </Flex>
                 </Flex>

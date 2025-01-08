@@ -84,7 +84,7 @@ function EditModal({ setUsers, user }) {
             <Modal isOpen={isOpen} onClose={onClose} size="lg">
                 <ModalOverlay />
                 <form onSubmit={handleEditUser }>
-                    <ModalContent bg="#19202D" color="white">
+                    <ModalContent bg="#000918" color="white">
                         <ModalHeader color="green.400">Edit Buddy Information</ModalHeader>
                         <ModalCloseButton />
                         <ModalBody pb={6}>

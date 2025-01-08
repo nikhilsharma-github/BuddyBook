@@ -6,7 +6,7 @@ function App() {
     const [users,setUsers]=useState([]);
     return (
         <>
-            <Stack minH={"100vh"}>
+            <Stack minH={"100vh"}  bgGradient={"linear(to-r, #000000, #011930)"}>
                 <Navbar setUsers={setUsers}></Navbar>
                 <Container maxW={"1200px"} my={2}>
                     <Text
