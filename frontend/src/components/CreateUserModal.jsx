@@ -75,6 +75,7 @@ const CreateUserModal = ({ setUsers }) => {
     return (
         <>
             <Button
+                fontSize={{ base: "10px", md: "20px" }}
                 onClick={onOpen}
                 colorScheme="blue"
                 leftIcon={<BiAddToQueue size={20} />}
@@ -105,6 +106,7 @@ const CreateUserModal = ({ setUsers }) => {
                                             })
                                         }
                                         variant="flushed"
+                                        maxLength={20}
                                     />
                                 </FormControl>
                                 <FormControl isRequired>
@@ -119,6 +121,7 @@ const CreateUserModal = ({ setUsers }) => {
                                             })
                                         }
                                         variant="flushed"
+                                        maxLength={20}
                                     />
                                 </FormControl>
                                 <FormControl isRequired>
@@ -135,6 +138,7 @@ const CreateUserModal = ({ setUsers }) => {
                                             })
                                         }
                                         variant="flushed"
+                                        maxLength={200}
                                     />
                                 </FormControl>
                                 <FormControl>

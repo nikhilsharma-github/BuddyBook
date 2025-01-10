@@ -102,6 +102,7 @@ function EditModal({ setUsers, user }) {
                                         }
                                         variant="flushed"
                                         color="white"
+                                        maxLength={15}
                                     />
                                 </FormControl>
 
@@ -118,6 +119,7 @@ function EditModal({ setUsers, user }) {
                                         }
                                         variant="flushed"
                                         color="white"
+                                        maxLength={15}
                                     />
                                 </FormControl>
                             <FormControl isRequired>
@@ -135,6 +137,7 @@ function EditModal({ setUsers, user }) {
                                         }
                                         variant="flushed"
                                         color="white"
+                                        maxLength={100}
                                     />
                                 </FormControl>
                             </Flex>

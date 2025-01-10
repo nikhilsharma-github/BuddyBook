@@ -1,10 +1,4 @@
-import {
-    Box,
-    Button,
-    Container,
-    Flex,
-    Text
-} from "@chakra-ui/react";
+import { Box, Button, Container, Flex, Text } from "@chakra-ui/react";
 import { IoMoon } from "react-icons/io5";
 import { LuSun } from "react-icons/lu";
 import CreateUserModal from "./CreateUserModal";
@@ -12,12 +6,7 @@ import CreateUserModal from "./CreateUserModal";
 const Navbar = ({ setUsers }) => {
     return (
         <Container maxW={"1200px"}>
-            <Box
-                px={4}
-                my={4}
-                borderRadius={16}
-                bg="#0f192f"
-            >
+            <Box px={4} my={4} borderRadius={16} bg="#0f192f">
                 <Flex
                     h="16"
                     alignItems={"center"}
@@ -28,7 +17,7 @@ const Navbar = ({ setUsers }) => {
                         alignItems={"center"}
                         justifyContent={"center"}
                         gap={3}
-                        display={{ base: "none", sm: "flex" }}
+                        display={{ base: "flex" }}
                     >
                         <img
                             src="/BuddyBook.png"
@@ -37,7 +26,7 @@ const Navbar = ({ setUsers }) => {
                             height={40}
                         />
                         <Text
-                            fontSize={"40px"}
+                            fontSize={{ base: "20px", md: "40px" }}
                             fontFamily="'Delius Swash Caps'"
                             bgGradient="linear(to-l, #ffe600, #ff1088)"
                             bgClip="text"
@@ -47,12 +36,10 @@ const Navbar = ({ setUsers }) => {
                     </Flex>
                     {/* Right side */}
                     <Flex gap={3} alignItems={"center"}>
-                        <Text
-                            fontSize={"lg"}
-                            fontWeight={500}
-                            display={{ base: "none", md: "block" }}
-                        ></Text>
-                        <CreateUserModal setUsers={setUsers}></CreateUserModal>
+                        <CreateUserModal
+                            Modal
+                            setUsers={setUsers}
+                        ></CreateUserModal>
                     </Flex>
                 </Flex>
             </Box>
